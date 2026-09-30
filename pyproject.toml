@@ -1,0 +1,17 @@
+[project]
+name = "storymaker"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Pratibha", email = "50351997+pratibha1294@users.noreply.github.com" }
+]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+storymaker = "storymaker:main"
+
+[build-system]
+requires = ["uv_build>=0.12.1,<0.13.0"]
+build-backend = "uv_build"
