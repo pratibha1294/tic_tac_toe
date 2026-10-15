@@ -24,14 +24,56 @@ def get_move(turn, board):
             break
     board[row-1][col-1]=turn
 
+def check_win(board,turn):
+    lines=[
+        [(0,0),(0,1),(0,2)],
+        [(1,0),(1,1),(1,2)],
+        [(2,0),(2,1),(2,2)],
+        [(0,0),(1,0),(2,0)],
+        [(0,1),(1,1),(2,1)],
+        [(0,2),(1,2),(2,2)],
+        [(0,0),(1,1),(2,2)],
+        [(0,2),(1,1),(2,0)]
+    ]
+    for line in lines:
+        win=True
+        for pos in line:
+            row,col=pos
+            if board[row][col]!=turn:
+                win=False
+                break
+        if win:
+            return True
+    return False
+        
+
 
 board= [
-    ["X"," "," "],
-    [" ","0"," "],
-    [" "," ","X"]
+    [" "," "," "],
+    [" "," "," "],
+    [" "," "," "]
 ]
+turn = 'X'
+turn_number = 0
 print_board(board)
-get_move("X", board)
-print_board(board)
-get_move("0", board)
-print_board(board)
+
+while turn_number<9:
+    print()
+    print("It is the ", turn , "player's turn.Please select your move.")
+    get_move(turn,board)
+    print_board(board)
+    winner = check_win(board,turn)
+    if winner:
+        break
+
+    if turn == "X":
+        turn = "0"
+    else:
+        turn = "X"
+    turn_number+=1
+if turn_number==9:
+    print("Tied game")
+else:
+    print("The winner was ", turn)
+
+
